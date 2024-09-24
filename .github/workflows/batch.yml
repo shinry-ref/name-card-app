@@ -1,0 +1,17 @@
+name: batch delete users user_skill
+
+on: 
+  schedule:
+    - cron: "0 6 * * *"
+
+
+jobs:
+  batch:
+    name: batch
+    runs-on: ubuntu-latest
+    steps:
+      - name: batchw
+        run: npx ts-node --esm ./batch/init.ts
+        env:
+            VITE_SUPABASE_URL: ${{secrets.VITE_SUPABASE_URL}}
+            VITE_SUPABASE_ANON_KEY: ${{secrets.VITE_SUPABASE_ANON_KEY}}
