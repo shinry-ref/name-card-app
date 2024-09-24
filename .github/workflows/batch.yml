@@ -21,7 +21,7 @@ jobs:
       - name: Install ts-node
         run: npm install ts-node@latest --save-dev
       - name: Run batch script
-        run: npx ts-node --esm --transpile-only ./batch/init.ts
+        run: npx ts-node --esm ./batch/init.ts
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
