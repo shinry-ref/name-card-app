@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install ts-node
-        run: npm install ts-node --save-dev
+        run: npm install ts-node@latest --save-dev
       - name: Run batch script
         run: npx ts-node --esm --transpile-only ./batch/init.ts
         env:
