@@ -15,13 +15,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"
       - name: Install dependencies
         run: npm install
-      - name: Install ts-node
-        run: npm i -g ts-node
+      - name: Install tsx
+        run: npm i -D tsx
       - name: Run batch script
-        run: npx node --loader ts-node/esm ./batch/init.ts
+        run: npx tsx ./batch/init.ts
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
