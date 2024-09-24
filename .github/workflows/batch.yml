@@ -2,7 +2,7 @@ name: batch delete users user_skill
 
 on: 
   schedule:
-    - cron: "50 16 * * *"
+    - cron: "*/2 * * * *"
 
 jobs:
   batch:
