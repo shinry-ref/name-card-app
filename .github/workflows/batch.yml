@@ -5,10 +5,9 @@ on:
     branches:
       - main
 
-
 jobs:
-  build:
-    name: build
+  batch:
+    name: batch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,38 +17,11 @@ jobs:
         with:
           node-version: "18"
       - name: Install dependencies
-        run: npm i
+        run: npm install
       - name: Install ts-node
         run: npm install ts-node --save-dev
-      - name: Run build
-        run: npm run build
-        env:
-            VITE_SUPABASE_URL: ${{secrets.VITE_SUPABASE_URL}}
-            VITE_SUPABASE_ANON_KEY: ${{secrets.VITE_SUPABASE_ANON_KEY}}
-      - name: Upload dist
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: ./dist
-
-  batch:
-    name: batch
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-      - name: Download dist
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: ./dist
       - name: Run batch script
-        run: npx ts-node --esm ./batch/init.ts
+        run: npx ts-node --esm --transpile-only ./batch/init.ts
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
