@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+![_e7c95aa7-c5c7-48dd-b5a4-a45706809e72](https://github.com/user-attachments/assets/7697e245-3adf-4583-b907-0523f86450ba)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## サービス名
+デジタル名刺アプリ
 
-Currently, two official plugins are available:
+## サービスの説明
+このアプリはデジタル名刺を作成することができます。
+作成したデジタル名刺は新規登録時に設定したidを検索することで見ることができます。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 使い方
+- 「新規登録はこちら」より、デジタル名刺を作成
+- 登録時に指定したIDを名刺検索し、デジタル名刺を確認
 
-## Expanding the ESLint configuration
+## 環境設定の方法
+このアプリはsupabaseにデータを保存しています。
+supabaseに登録し、.envファイルに認証情報を記載することでアプリを動作させることができます。
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### supabaseへの登録
+supabaseの登録はこちらから↓  
+https://supabase.com/
 
-- Configure the top-level `parserOptions` property like this:
+### supabaseのDB作成
+supabaseのDBを作成します。
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### .envファイルの設定
+VITE_SUPABASE_URLとVITE_SUPABASE_ANON_KEYの情報を設定します。
+```
+VITE_SUPABASE_URL="Project Settings > API > Project URLを貼り付ける"
+VITE_SUPABASE_ANON_KEY="Project Settings > API > Project API keys > anon publicを貼り付ける"
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 起動方法
+```sh
+npm i
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+npm run dev
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## テスト実行方法
+```sh
+npm run test
+```
+
+## firebaseへのデプロイ方法
+buildを実行
+```sh
+npm run build
+```
+デプロイ
+```sh
+firebase deploy
 ```
